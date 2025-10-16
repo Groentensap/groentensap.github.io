@@ -58,9 +58,7 @@
   for (let i = 17; i < 146; i++) {
     files.push(`${i}.jpg`);
   }
-  files.push("1.mov",
-          "2.mp4",
-          "3.mp4",);
+
 
   const gallery = document.getElementById('gallery');
 
@@ -73,7 +71,7 @@
     const img = document.createElement('img');
     img.src = src;
     img.alt = filename;
-    img.onerror = () => { img.style.opacity = 0.4; img.alt = 'Dit is een video :)'; };
+    img.onerror = () => { img.style.opacity = 0.4; img.alt = 'Afbeelding niet gevonden :)'; };
 
     const controls = document.createElement('div');
     controls.className = 'controls';
