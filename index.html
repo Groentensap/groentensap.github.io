@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Foto-galerij</title>
+  <style>
+    body { font-family: system-ui, Arial; padding: 20px; max-width: 1000px; margin: auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(220px,1fr)); gap: 16px; }
+    .card { border: 1px solid #ddd; padding: 8px; border-radius: 8px; text-align:center; }
+    .card img { max-width: 100%; height: 160px; object-fit: cover; border-radius: 6px; }
+    .controls { margin-top: 8px; display:flex; gap:8px; justify-content:center; }
+    .btn { padding: 6px 10px; border-radius:6px; text-decoration:none; border:1px solid #888; background:#f6f6f6; color:#000; }
+    .title-bar {
+      background-color: #007BFF; 
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .title-bar h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+  </style>
+</head>
+<body>
+<div class="title-bar">
+  <h1>Foto's feest</h1>
+</div>
+
+<div id="gallery" class="grid"></div>
+
+<script>
+  // Handmatige lijst + automatische reeks 17–146
+  const files = [
+    "test.jpg",
+    "foto1.jpg",
+    "foto2.jpg",
+    "foto3.jpg",
+    "foto4.jpg",
+    "foto5.jpg",
+    "foto6.jpg",
+    "foto7.jpg",
+    "foto8.jpg",
+    "foto9.jpg",
+    "foto10.jpg",
+    "foto11.jpg",
+    "foto12.jpg",
+    "foto13.jpg",
+    "foto14.jpg",
+    "foto15.jpg",
+    "foto16.jpg"
+  ];
+
+  for (let i = 17; i < 146; i++) {
+    files.push(`${i}.jpg`);
+  }
+  files.push("1.mov",
+          "2.mp4",
+          "3.mp4",);
+
+  const gallery = document.getElementById('gallery');
+
+  files.forEach(filename => {
+    const src = filename;
+
+    const card = document.createElement('div');
+    card.className = 'card';
+
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = filename;
+    img.onerror = () => { img.style.opacity = 0.4; img.alt = 'Dit is een video :)'; };
+
+    const controls = document.createElement('div');
+    controls.className = 'controls';
+
+    const view = document.createElement('a');
+    view.className = 'btn';
+    view.href = src;
+    view.target = '_blank';
+    view.textContent = 'Open';
+
+    controls.appendChild(view);
+
+    card.appendChild(img);
+    card.appendChild(controls);
+
+    gallery.appendChild(card);
+  });
+</script>
+</body>
+</html>
